@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ request.user }}</title>
+
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+
+<body>
+
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h2>Investor Name: {{ request.user }}</h2>
+
+            <table>
+              <tr>
+                <th>Amount Invested</th>
+                <th>Date</th>
+                <th>Rate Of Interest</th>
+                <th>Return</th>
+                <th>Profit</th>
+              </tr>
+
+              <tr></tr>
+
+              
+            </table>
+        {% endif %}
+    </div>
+
+</body>
+</html>
