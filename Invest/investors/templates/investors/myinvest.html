@@ -38,7 +38,14 @@ tr:nth-child(even) {
                 <th>Profit</th>
               </tr>
 
-              <tr></tr>
+              {% for item in total_invested_by_user %}
+              <th>{{ item.amount }}</th>
+              <th>{{ item.timestamp }}</th>
+              <th>{{ item.rate }}</th>
+            
+              {% endfor %}
+
+            
 
               
             </table>

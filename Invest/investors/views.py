@@ -1,7 +1,48 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import *
+from .forms import UserRegistrationForm, InvestorsForm
+
+from django.views.generic import ListView
+
+
+
+def InvestView(request):
+    if request.method == 'POST':
+        form = InvestorsForm(request.POST or None, instance=request.user)
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
+            rate = form.cleaned_data['rate']
+            instance = form.save(commit=False)
+            instance.name = request.user
+            print(instance.name)
+            instance.save()
+            return redirect('myinvest')
+    else:
+        form = InvestorsForm()
+        args = {'form':form}
+    return render(request, 'investors/form.html', args)
+
+
+
+class InvestmentListView(ListView):
+    model = Investment
+    template_name = 'investors/myinvest.html'
+    context_object_name = 'total_invested_by_user'
+
+
+    def get_queryset(self):
+        return  Investment.objects.filter(investor=self.request.user)
+
+
+
+# def InvestmentDetailView(request):
+
+#     return render(request, 'investors/myinvest.html')
+
+
 
 
 def RegisterView(request):
@@ -18,6 +59,3 @@ def RegisterView(request):
     return render(request, 'investors/register.html', {'form': form})
 
 
-
-def InvestmentDetailView(request):
-    return render(request, 'investors/myinvest.html')

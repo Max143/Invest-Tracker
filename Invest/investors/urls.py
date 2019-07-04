@@ -4,8 +4,16 @@ from . import views
 from investors import views as user_views
 
 
+
+
 urlpatterns = [
-    path('myinvest/', views.InvestmentDetailView, name='myinvest'),
+    path('myinvest/', views.InvestmentListView.as_view(), name='myinvest'),
+    
     path('register/', user_views.RegisterView, name='register'),
+
+    #path('invest/new/', PostInvestView.as_view(), name="invest"),
+
+    path('invest/', views.InvestView, name='invest'),
+
 
 ]
