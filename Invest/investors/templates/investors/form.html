@@ -12,7 +12,7 @@
         <form method="POST">
             {% csrf_token %}
 
-                {{ form | crispy }}
+                {{ investment_form | crispy }}
             <div class=container>
                 <button method='submit'>Invest</button>
             </div>

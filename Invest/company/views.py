@@ -24,9 +24,12 @@ def RecordView(request):
 
 
 
-#@login_required
 def TotalRecord(request):
     if request.user.is_superuser():
-        all_investment = Investment.objects.all()
-        args = {'all_investment':all_investment}
-        return render(request, 'company/totalrecord.html', args)
+        
+        total = Investment.objects.all()
+        
+        context = {'total': total}
+
+        return render(request, 'investors/total.html', context)
+

@@ -6,24 +6,36 @@ from .models import *
 from .forms import UserRegistrationForm, InvestorsForm
 
 from django.views.generic import ListView
+from django.http import HttpResponse
 
 
 # Form that allow logged in user to invest 
 def InvestView(request):
-    if request.method == 'POST':
-        form = InvestorsForm(request.POST or None, instance=request.user)
-        if form.is_valid():
-            amount = form.cleaned_data['amount']
-            rate = form.cleaned_data['rate']
-            instance = form.save(commit=False)
-            instance.name = request.user.id
-            print(instance.name)
-            instance.save()
-            return redirect('myinvest')
-    else:
-        form = InvestorsForm()
-        args = {'form':form}
-    return render(request, 'investors/form.html', args)
+    try:
+        investor = Investor.objects.get(user=request.user)
+        print(investor)
+        name = investor.name 
+        print(name)
+        amount = int(request.POST.get('amount'))
+        rate = int(request.POST.get('rate'))
+
+        return redirect(request, 'investors/myinvest.html')
+    except:
+        pass
+
+    return render(request, 'investors/form.html')
+    
+
+
+
+
+
+
+
+        # else:
+        #     investment_form = InvestorsForm(request.user)
+        #     args = {'investment_form': investment_form}
+        #     return render(request, 'investors/form.html', args)
 
 
 
@@ -48,43 +60,6 @@ def InvestmentListView(request):
     print(investors)
     args = {'investors':investors}
     return render(request, 'investors/myinvest.html', args)
-
-
-
-# def InvestmentListView(request):
-#     investment_total = Investment.objects.all()
-#     print(investment_total)
-#     investor =  Investor.objects.get(user=request.user)
-#     print(investor)
-#     name = investor.name
-#     print(name)
-
-#     try:
-#         investment_id = request.GET.get('investor')
-#         investment_id = int(investment_id)
-#         investment  = Investment.objects.get(pk=investment_id)
-#     except:
-#         pass
-
-#     return render(request, 'investors/myinvest.html')
-
-
-
-
-# class InvestmentListView(ListView):
-#     model = Investment
-#     template_name = 'investors/myinvest.html'
-#     context_object_name = 'total_invested_by_user'
-
-
-#     def get_queryset(self):
-#         return  Investment.objects.filter(investor=self.request.user)
-
-
-
-# def InvestmentDetailView(request):
-
-#     return render(request, 'investors/myinvest.html')
 
 
 # Register 
