@@ -7,9 +7,9 @@ from investors import views as user_views
 
 
 urlpatterns = [
-    #path('myinvest/', views.InvestmentListView.as_view(), name='myinvest'),
-
     path('myinvest/', views.InvestmentListView, name='myinvest'),
+
+    #path('myinvest/', views.InvestmentListView, name='myinvest'),
     
     path('register/', user_views.RegisterView, name='register'),
 

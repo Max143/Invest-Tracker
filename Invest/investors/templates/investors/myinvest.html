@@ -38,7 +38,17 @@ tr:nth-child(even) {
                 <th>Profit</th>
               </tr>
 
-             
+             <tr>
+              {% for invest in investors %}
+               <th>{{ invest.amount }}</th>
+               <th>{{ invest.timestamp }}</th>
+               <th>{{ invest.rate }}</th>
+               
+               <th>None</th>
+               <th>None</th>
+              {% endfor %}
+             </tr>
+             <br>
             
 
               

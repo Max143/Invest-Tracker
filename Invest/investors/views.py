@@ -27,19 +27,46 @@ def InvestView(request):
 
 
 
-# List where user can see the record of their past investment
-
-class InvestmentListView(ListView):
-    model = Investment
-    template_name = 'investors/myinvest.html'
-    context_object_name = 'total_invested_by_user'
+#List where user can see the record of their past investment
 
 
-    def get_queryset(self):
-        return  Investment.objects.filter(investor=self.request.user.id)
+# class InvestmentListView(ListView):
+#     model = Investment
+#     template_name = 'investors/myinvest.html'
+#     context_object_name = 'total_invested_by_user'
+
+
+#     def get_queryset(self):
+#         return  Investment.objects.filter(investor=self.request.user.id)
 
 
 
+
+@login_required
+def InvestmentListView(request):
+    investors = Investment.objects.filter(investor__user=request.user)
+    print(investors)
+    args = {'investors':investors}
+    return render(request, 'investors/myinvest.html', args)
+
+
+
+# def InvestmentListView(request):
+#     investment_total = Investment.objects.all()
+#     print(investment_total)
+#     investor =  Investor.objects.get(user=request.user)
+#     print(investor)
+#     name = investor.name
+#     print(name)
+
+#     try:
+#         investment_id = request.GET.get('investor')
+#         investment_id = int(investment_id)
+#         investment  = Investment.objects.get(pk=investment_id)
+#     except:
+#         pass
+
+#     return render(request, 'investors/myinvest.html')
 
 
 
