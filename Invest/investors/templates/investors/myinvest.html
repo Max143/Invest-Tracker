@@ -28,7 +28,7 @@ tr:nth-child(even) {
     <div class="container">
         {% if user.is_authenticated %}
             <h2>Investor Name: {{ request.user }}</h2>
-
+            {% for invest in investors %}
             <table>
               <tr>
                 <th>Amount Invested</th>
@@ -39,20 +39,23 @@ tr:nth-child(even) {
               </tr>
 
              <tr>
-              {% for invest in investors %}
+              
                <th>{{ invest.amount }}</th>
                <th>{{ invest.timestamp }}</th>
                <th>{{ invest.rate }}</th>
                
                <th>None</th>
-               <th>None</th>
-              {% endfor %}
+               <th>None</th>  
+           
              </tr>
+
              <br>
             
 
               
             </table>
+                     
+              {% endfor %}
         {% endif %}
 
 </body>
