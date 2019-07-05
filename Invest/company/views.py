@@ -1,35 +1,47 @@
 from django.shortcuts import render
-#from django.contrib.decorators import login_required
+from investors.models import Investor, Investment
 
 
 
+# Home View
 def CompanyView(request):
-    return render(request, 'company/company.html')
+    all_investor = Investor.objects.all()
+    context = {
+
+        'all_investor':all_investor
+     }
+    return render(request, 'company/company.html', context)
 
 
 
-#@login_required
+# Each investor Record view
 def RecordView(request):
-    if request.user.is_superuser():
+    all_investor = Investor.objects.all()
+    total_investment = Investment.objects.all()
+    print(all_investor)
+    print(total_investment)
+    investor_id = Investor.objects.get(user=request.user.id)
+    print(investor_id)
+    investor_name = investor_id.name
+    print(investor_name)
 
-        all_investment = Investment.objects.all()  #  total investement
+    try:
+        investor_id - request.GET.get('investor_id')
+        investor_id = int(investor_id)
+        investment = Investment.objects.filter(pk=investor_id)
+    except:
+        pass
 
-        context = {
+    context = {
 
-                'all_investment':all_investment,
-                'all_investors' : all_investors
+        'all_investor':all_investor,
+        'total_investment':total_investment,
+        'investor_name':investor_name
+    }
 
-        }
-        return render(request, 'company/record.html', context)
+    return render(request, 'company/record.html', context)
 
 
-
-def TotalRecord(request):
-    if request.user.is_superuser():
-        
-        total = Investment.objects.all()
-        
-        context = {'total': total}
-
-        return render(request, 'investors/total.html', context)
-
+# Total Investments Record  View
+def TotalRecordView(request):
+    return render(request, 'company/total.html')

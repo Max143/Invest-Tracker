@@ -1,4 +1,5 @@
 # Invest-Tracker
+
 Web Application that allow to investors to invest and track their investment record dynamically. 
 
 
@@ -7,11 +8,11 @@ Web Application that allow to investors to invest and track their investment rec
 About Project :
 
 
-I have a Company. 
+You have a Company. 
  
-Investor can invest into my company.
+Investor can invest into your company.
 
-I need to store the record of the of their investment done by their investor.
+You need to store the record of the of their investment done by their investor.
 
 Record like - Date of investment / Amount Invested /interest rate/ Return / Profit
 (Investment can be done multiple times so store the each invesment in list)

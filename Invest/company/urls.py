@@ -3,11 +3,15 @@ from . import views
 
 
 urlpatterns = [
+    # Home url 
     path('', views.CompanyView, name='home'),
 
-    path('record/', views.RecordView, name='records'),
+    # Each Investor Record Url
+    path('records/', views.RecordView, name='records'),
 
-    path('total-record/', views.TotalRecord, name='total'),
+    # Total Investment Record
+    path('total-record/', views.TotalRecordView, name='total'),
+
 
 ]
  

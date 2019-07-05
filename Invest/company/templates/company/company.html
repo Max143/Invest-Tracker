@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  
   <title>Manish EnterPrises</title>
 
   <!-- Bootstrap Core CSS -->
@@ -126,8 +126,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'total' %}">Total Investment</a>
-          {% for investor in all_investors %}
-            <a class="dropdown-item" href="#">{{ investor}}</a>
+          {% for investor in all_investor %}
+            <a class="dropdown-item" href="{% url 'records' %}?investor={{investor.id}}">{{ investor.name }}</a>
           {% endfor %}
         </div>
       </li>

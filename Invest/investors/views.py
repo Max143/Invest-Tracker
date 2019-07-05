@@ -11,20 +11,27 @@ from django.http import HttpResponse
 
 # Form that allow logged in user to invest 
 def InvestView(request):
-    try:
-        investor = Investor.objects.get(user=request.user)
-        print(investor)
-        name = investor.name 
-        print(name)
-        amount = int(request.POST.get('amount'))
-        rate = int(request.POST.get('rate'))
+    if request.method == 'GET':
+        investment_form = InvestorsForm(request.user)
+        context = {'investment_form': investment_form}
+        return render(request, 'investors/form.html', context)
+    if request.method == 'POST':
+        investment_form = InvestorsForm(request.POST or None, instance=request.user)
 
-        return redirect(request, 'investors/myinvest.html')
-    except:
-        pass
-
-    return render(request, 'investors/form.html')
-    
+        if investment_form.is_valid():
+            amount = investment_form.cleaned_data['amount']
+            interest = investment_form.cleaned_data['rate']
+            saving = investment_form.save(commit=False)
+            investor = request.user
+            print(investor)
+            saving.investor = investor
+            # Passing Logged in user
+            # investor = request.user
+            # print(investor)
+            # saving.investor.user = request.user
+            saving.save()
+            messages.success(request, f'New Investment Done!')
+            return render(request, 'investor/myinvest.html')    
 
 
 
