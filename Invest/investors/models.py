@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 
 
+
+
 class Investor(models.Model):  
     name = models.CharField(max_length=99) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

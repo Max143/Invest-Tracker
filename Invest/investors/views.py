@@ -16,7 +16,7 @@ def InvestView(request):
             amount = form.cleaned_data['amount']
             rate = form.cleaned_data['rate']
             instance = form.save(commit=False)
-            instance.name = request.user
+            instance.name = request.user.id
             print(instance.name)
             instance.save()
             return redirect('myinvest')
@@ -27,6 +27,7 @@ def InvestView(request):
 
 
 
+
 class InvestmentListView(ListView):
     model = Investment
     template_name = 'investors/myinvest.html'
@@ -34,7 +35,22 @@ class InvestmentListView(ListView):
 
 
     def get_queryset(self):
-        return  Investment.objects.filter(investor=self.request.user)
+        return  Investment.objects.filter(investor=self.request.user.id)
+
+
+
+
+
+
+
+# class InvestmentListView(ListView):
+#     model = Investment
+#     template_name = 'investors/myinvest.html'
+#     context_object_name = 'total_invested_by_user'
+
+
+#     def get_queryset(self):
+#         return  Investment.objects.filter(investor=self.request.user)
 
 
 
