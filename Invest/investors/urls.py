@@ -18,4 +18,6 @@ urlpatterns = [
     path('invest/', views.InvestView, name='invest'),
 
 
+    
+
 ]

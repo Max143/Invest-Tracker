@@ -135,7 +135,9 @@
       </li>
       <li class="nav-item">
         {% if user.is_authenticated %}
-        <a class="nav-link" href="{% url 'myinvest' %}">My Invesment</a>
+        <li>
+        <a class="nav-link" href="{% url 'myinvest' %}">My Invesment</a></li>
+        <li><a class="nav-link" href="{% url 'invest' %}">Invest More</a></li>
         {% endif %}
       </li>
   

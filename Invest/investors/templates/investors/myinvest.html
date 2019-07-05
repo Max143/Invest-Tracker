@@ -19,7 +19,20 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+.footer{
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+   text-align: center;
+}
+
 </style>
+
+
 </head>
 
 
@@ -48,15 +61,49 @@ tr:nth-child(even) {
                <th>None</th>  
            
              </tr>
-
-             <br>
-            
-
-              
+             <br> 
             </table>
-                     
+
               {% endfor %}
-        {% endif %}
+        {% endif  %}
+
+
+        <div class="container">
+        <hr>
+        <a href="{% url 'home' %}">Go To Home Page</a>
+        </div>
+
+
+<div class="footer">
+<footer>
+          <div class="container mt-3">
+             <table>
+              <tr>
+                <th>Total Amount Invested</th>
+                <th>Current Date</th>
+                <th>Total Interest</th>
+                <th>Total Return</th>
+                <th>Total profit</th>
+              </tr>
+
+             <tr>
+              
+               <th>None</th>
+               <th>None</th>
+               <th>None</th>
+               
+               <th>None</th>
+               <th>None</th>  
+           
+             </tr>
+             <br> 
+            </table>
+
+          </div>
+
+</footer>
+</div>
+
 
 </body>
 </html>
