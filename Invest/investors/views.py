@@ -8,7 +8,7 @@ from .forms import UserRegistrationForm, InvestorsForm
 from django.views.generic import ListView
 
 
-
+# Form that allow logged in user to invest 
 def InvestView(request):
     if request.method == 'POST':
         form = InvestorsForm(request.POST or None, instance=request.user)
@@ -27,6 +27,7 @@ def InvestView(request):
 
 
 
+# List where user can see the record of their past investment
 
 class InvestmentListView(ListView):
     model = Investment
@@ -59,8 +60,7 @@ class InvestmentListView(ListView):
 #     return render(request, 'investors/myinvest.html')
 
 
-
-
+# Register 
 def RegisterView(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
