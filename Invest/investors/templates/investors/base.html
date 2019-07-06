@@ -8,8 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  
 
-  <title>Manish EnterPrises</title>
+  <title>{% block title %}Manish EnterPrises{% endblock title %}</title>
 
   <!-- Bootstrap Core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -110,6 +111,7 @@
 
 <body id="page-top">
 
+ 
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Manish Enterprises</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,12 +124,12 @@
 
          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dashboard
+          Investment Record
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'total' %}">Total Investment</a>
-          {% for investor in all_investors %}
-            <a class="dropdown-item" href="#">{{ investor}}</a>
+          {% for investor in all_investor %}
+            <a class="dropdown-item" href="{% url 'records' investor.id %}">{{ investor.name }}</a>
           {% endfor %}
         </div>
       </li>
@@ -135,7 +137,9 @@
       </li>
       <li class="nav-item">
         {% if user.is_authenticated %}
-        <a class="nav-link" href="{% url 'myinvest' %}">My Invesment</a>
+        <li>
+        <a class="nav-link" href="{% url 'myinvest' %}">My Invesment</a></li>
+        <li><a class="nav-link" href="{% url 'invest' %}">Invest More</a></li>
         {% endif %}
       </li>
   
@@ -156,6 +160,17 @@
   </div>
 </nav>
 
+  <!-- Header -->
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto">
+      <h1 class="mb-2">Business</h1>
+      <h3 class="mb-5">
+        <em>Invest On Us</em>
+      </h3>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'myinvest' %}">My Investment</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
 
   
 </body>

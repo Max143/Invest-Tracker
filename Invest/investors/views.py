@@ -33,22 +33,8 @@ def InvestView(request):
             messages.success(request, f'New Investment Done!')
             return render(request, 'investor/myinvest.html')    
 
-
-
-
-
-
-
-        # else:
-        #     investment_form = InvestorsForm(request.user)
-        #     args = {'investment_form': investment_form}
-        #     return render(request, 'investors/form.html', args)
-
-
-
+# class based views
 #List where user can see the record of their past investment
-
-
 # class InvestmentListView(ListView):
 #     model = Investment
 #     template_name = 'investors/myinvest.html'
@@ -57,7 +43,6 @@ def InvestView(request):
 
 #     def get_queryset(self):
 #         return  Investment.objects.filter(investor=self.request.user.id)
-
 
 
 

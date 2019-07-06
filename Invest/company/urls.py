@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.CompanyView, name='home'),
 
     # Each Investor Record Url
-    path('records/', views.RecordView, name='records'),
+    path('records/<int:id>/', views.RecordView, name='records'),
 
     # Total Investment Record
     path('total-record/', views.TotalRecordView, name='total'),

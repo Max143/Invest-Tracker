@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{{ investor_name }}{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+  color: black;
+}
+
+.footer{
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #2d2f33;
+   color: white;
+   text-align: center;
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+  {% block content %}
+
+  {% endblock content %}
+
+          
+
+        <div class="container">
+        <hr>
+        <a href="{% url 'home' %}">Go To Home Page</a>
+        </div>
+ 
+
+<div class="footer">
+<footer>
+          <div class="container mt-3">
+             <table>
+              <tr>
+                <th>Total Amount Recieved</th>
+                <th>Current Date</th>
+                <th>Total Interest</th>
+                <th>Total Return</th>
+                <th>Total profit</th>
+              </tr>
+
+             <tr>
+              
+               <th>None</th>
+               <th>None</th>
+               <th>None</th>
+               
+               <th>None</th>
+               <th>None</th>  
+           
+             </tr>
+             <br> 
+            </table>
+
+          </div>
+
+</footer>
+</div>
+
+
+</body>
+</html>

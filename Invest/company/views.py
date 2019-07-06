@@ -15,18 +15,20 @@ def CompanyView(request):
 
 
 # Each investor Record view
-def RecordView(request):
+def RecordView(request,id):
+    print ("id :",id)
     all_investor = Investor.objects.all()
-    total_investment = Investment.objects.all()
-    print(all_investor)
-    print(total_investment)
-    investor_id = Investor.objects.get(user=request.user.id)
-    print(investor_id)
+    # total_investment = Investment.objects.all()
+    total_investment=Investment.objects.filter(investor=id)
+    print("all_investor :",all_investor)
+    print("total_investment :",total_investment)
+    investor_id = Investor.objects.get(id=id)
+    print("investor_id :",investor_id)
     investor_name = investor_id.name
-    print(investor_name)
+    print("investor_name :",investor_name)
 
     try:
-        investor_id - request.GET.get('investor_id')
+        investor_id = request.GET.get('investor_id')
         investor_id = int(investor_id)
         investment = Investment.objects.filter(pk=investor_id)
     except:
