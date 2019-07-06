@@ -3,6 +3,11 @@ from investors.models import Investor, Investment
 
 
 
+def PaymentView(request):
+    return render(request, 'company/transfer.html')
+
+
+
 # Home View
 def CompanyView(request):
     all_investor = Investor.objects.all()
@@ -46,4 +51,10 @@ def RecordView(request,id):
 
 # Total Investments Record  View
 def TotalRecordView(request):
-    return render(request, 'company/total.html')
+    total_investment = Investment.objects.all()
+    all_investors = Investor.objects.all()
+    context = {
+        'total_investment':total_investment,
+        'all_investors': all_investors
+    }
+    return render(request, 'company/total.html', context)

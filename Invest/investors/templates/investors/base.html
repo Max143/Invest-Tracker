@@ -124,13 +124,14 @@
 
          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Investment Record
+          Dashboard
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'total' %}">Total Investment</a>
           {% for investor in all_investor %}
             <a class="dropdown-item" href="{% url 'records' investor.id %}">{{ investor.name }}</a>
           {% endfor %}
+
         </div>
       </li>
       {% endif %}
@@ -142,6 +143,9 @@
         <li><a class="nav-link" href="{% url 'invest' %}">Invest More</a></li>
         {% endif %}
       </li>
+
+        <li><a class="nav-link" href="{% url 'payment' %}">Transer Payment & History</a></li>
+      <li></li>
   
     </ul>
     {% if user.is_authenticated %}
@@ -160,19 +164,11 @@
   </div>
 </nav>
 
-  <!-- Header -->
-  <header class="masthead d-flex">
-    <div class="container text-center my-auto">
-      <h1 class="mb-2">Business</h1>
-      <h3 class="mb-5">
-        <em>Invest On Us</em>
-      </h3>
-      <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'myinvest' %}">My Investment</a>
-    </div>
-    <div class="overlay"></div>
-  </header>
+   {% block header %}
 
-  
+   {% endblock header %}
+
+ 
 </body>
 
 </html>

@@ -11,6 +11,9 @@ urlpatterns = [
 
     # Total Investment Record
     path('total-record/', views.TotalRecordView, name='total'),
+ 
+    # Total Investment Record
+    path('pay/', views.PaymentView, name='payment'),
 
 
 ]
